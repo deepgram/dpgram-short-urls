@@ -1,5 +1,5 @@
 import { App, SlashCommand, ViewSubmitAction } from "@slack/bolt";
-import { Client, query } from "faunadb";
+import { Client } from "faunadb";
 import { createUrl, getUrlByLong, getUrlByShort } from "./utils/faunaDb";
 import { parse } from "url";
 import dotenv from "dotenv";
