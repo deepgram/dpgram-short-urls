@@ -1,33 +1,27 @@
-# Template TypeScript Fastify App
+# Dpgr.am
 
-Set it up:
+The Deepgram URL shortener. Built using [Bolt-js](https://github.com/slackapi/bolt-js) from Slack, this bot takes care of channel-based URL shortening, and the redirect of HTTP requests.
+
+## Getting started
 
 ```bash
-npm i
-# - or -
-# yarn
+npm install
 ```
 
-Run it:
+### Run in
 
-```bash
+```
 npm run dev
-# - or -
-# yarn dev
 ```
 
-Build it:
+### Build it
 
-```bash
+```
 npm run build
-# - or -
-# yarn build
 ```
 
-Start the build:
+### Run it
 
-```bash
+```
 npm start
-# - or -
-# yarn start
 ```
