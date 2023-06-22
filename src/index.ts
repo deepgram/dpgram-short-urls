@@ -96,6 +96,7 @@ app.command<SlashCommand>(
           block_id: "long_url",
           element: {
             type: "url_text_input",
+            initial_value: "",
             action_id: "long",
             placeholder: {
               type: "plain_text",
