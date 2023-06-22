@@ -1,10 +1,11 @@
-import { App, SlashCommand, ViewSubmitAction } from "@slack/bolt";
+import { App, InputBlock, SlashCommand, ViewSubmitAction } from "@slack/bolt";
 import { Client } from "faunadb";
 import { createUrl, getUrlByLong, getUrlByShort } from "./utils/faunaDb";
 import { parse } from "url";
 import dotenv from "dotenv";
 import isValidUrl from "./utils/isValidUrl";
 import randomString from "./utils/randomString";
+import modal from "./blocks/shorten-modal";
 dotenv.config();
 
 const defaultRedirectLocation = "https://deepgram.com";
@@ -72,11 +73,12 @@ const app = new App({
 app.command<SlashCommand>(
   "/shorten",
   async ({ payload, client, command, body, ack }) => {
-    const modal = require("./blocks/shorten-modal.json");
+    // const modal = modal;
+    const blocks = modal.blocks;
     const longInputIdx = modal.blocks.findIndex(
-      (block) => block.element.action_id == "long",
+      (block: InputBlock) => block.element.action_id == "long",
     );
-    const longInput = modal.blocks[longInputIdx];
+    const longInput: any = modal.blocks[longInputIdx];
 
     await ack();
 
