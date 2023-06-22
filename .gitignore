@@ -60,4 +60,4 @@ profile*
 build/
 .husky
 
-.env
+.env*.local
