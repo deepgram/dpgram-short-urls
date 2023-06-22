@@ -15,9 +15,7 @@
     "@slack/bolt": "^3.12.2",
     "fastify": "^3.27.4",
     "faunadb": "^4.8.0",
-    "dotenv": "^16.3.1"
-  },
-  "devDependencies": {
+    "dotenv": "^16.3.1",
     "@flydotio/dockerfile": "^0.2.16",
     "@types/eslint": "8.4.1",
     "@types/eslint-plugin-prettier": "3.1.0",
