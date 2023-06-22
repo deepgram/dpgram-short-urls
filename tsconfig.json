@@ -5,6 +5,7 @@
     "target": "es2020",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "incremental": true,
     "noImplicitAny": false,
     "moduleResolution": "node",
