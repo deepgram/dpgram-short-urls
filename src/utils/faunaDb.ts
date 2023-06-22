@@ -1,5 +1,4 @@
 import { Client, query } from "faunadb";
-import randomString from "./randomString";
 
 type FaunaResult = {
   ref: any;
