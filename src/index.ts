@@ -127,7 +127,46 @@ app.command<SlashCommand>(
 app.view<ViewSubmitAction>(
   "try-shorten",
   async ({ payload, ack, body, client }) => {
-    const long = payload.state.values.long_url.long.value;
+    let long = payload.state.values.long_url.long.value;
+
+    const urlObj = new URL(long);
+    const urlParams = urlObj.searchParams;
+
+    const values = payload.state.values;
+    const {
+      utm_source: {
+        utm_source: { value: utm_source },
+      },
+      utm_campaign: {
+        utm_campaign: { value: utm_campaign },
+      },
+      utm_content: {
+        utm_content: { value: utm_content },
+      },
+      utm_medium: {
+        utm_medium: { value: utm_medium },
+      },
+    } = values;
+
+    if (utm_source) {
+      urlParams.set("utm_source", utm_source);
+    }
+
+    if (utm_campaign) {
+      urlParams.set("utm_campaign", utm_campaign);
+    }
+
+    if (utm_content) {
+      urlParams.set("utm_content", utm_content);
+    }
+
+    if (utm_medium) {
+      urlParams.set("utm_medium", utm_medium);
+    }
+
+    if (utm_source || utm_campaign || utm_content || utm_medium) {
+      long = urlObj.href;
+    }
 
     if (!isValidUrl(long)) {
       await ack({
