@@ -12,6 +12,13 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV=production
 
+ARG SLACK_SIGNING_SECRET
+ARG SLACK_BOT_TOKEN
+ARG SLACK_CLIENT_ID
+ARG SLACK_CLIENT_SECRET
+ARG SLACK_STATE_SECRET
+ARG SLACK_CHANNEL_ID
+ARG FAUNA_DB_SECRET
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
