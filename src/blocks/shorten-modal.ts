@@ -5,7 +5,7 @@ const modal: ModalView = {
   type: "modal",
   title: {
     type: "plain_text",
-    text: "Deepgram URL Shortener",
+    text: "Dpgr.am - Short URLs",
     emoji: true,
   },
   submit: {
