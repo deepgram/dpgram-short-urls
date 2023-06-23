@@ -4,7 +4,7 @@ import { createUrl, getUrlByLong, getUrlByShort } from "./utils/faunaDb";
 import { parse } from "url";
 import dotenv from "dotenv";
 import isValidUrl from "./utils/isValidUrl";
-import modal from "./blocks/shorten-modal";
+import modalFactory from "./blocks/shorten-modal";
 import randomString from "./utils/randomString";
 import truncator from "./utils/truncator";
 dotenv.config();
@@ -74,11 +74,7 @@ const app = new App({
 app.command<SlashCommand>(
   "/shorten",
   async ({ payload, client, command, body, ack }) => {
-    const longInputIdx = modal.blocks.findIndex(
-      (block: InputBlock) => block.element.action_id == "long",
-    );
-    const longInput: any = modal.blocks[longInputIdx];
-
+    let modal = modalFactory();
     await ack();
 
     const result = await client.conversations.members({
@@ -100,20 +96,11 @@ app.command<SlashCommand>(
     // if value is in command body, add initial value to modal
     if (command.text !== "") {
       const url = command.text;
+      const parsed = url.replace(/\<|\>/g, "").replace(/&amp;/g, "&");
 
-      if (!isValidUrl(url)) {
-        await client.chat.postEphemeral({
-          token: process.env.SLACK_BOT_TOKEN,
-          channel: channel,
-          user: payload.user_id,
-          text: `Sorry <@${payload.user_name}>, \`${url}\` is not a valid URL.`,
-        });
-
-        return;
+      if (isValidUrl(parsed)) {
+        modal = modalFactory({ initial_value: parsed });
       }
-
-      longInput.element.initial_value = url;
-      modal.blocks[longInputIdx] = longInput;
     }
 
     await client.views.open({
