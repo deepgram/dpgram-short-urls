@@ -74,8 +74,6 @@ const app = new App({
 app.command<SlashCommand>(
   "/shorten",
   async ({ payload, client, command, body, ack }) => {
-    // const modal = modal;
-    const blocks = modal.blocks;
     const longInputIdx = modal.blocks.findIndex(
       (block: InputBlock) => block.element.action_id == "long",
     );
