@@ -4,8 +4,9 @@ import { createUrl, getUrlByLong, getUrlByShort } from "./utils/faunaDb";
 import { parse } from "url";
 import dotenv from "dotenv";
 import isValidUrl from "./utils/isValidUrl";
-import randomString from "./utils/randomString";
 import modal from "./blocks/shorten-modal";
+import randomString from "./utils/randomString";
+import truncator from "./utils/truncator";
 dotenv.config();
 
 const defaultRedirectLocation = "https://deepgram.com";
@@ -219,9 +220,9 @@ app.view<ViewSubmitAction>(
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `*Target Url:* <${
-                longExists.data.target
-              }|${longExists.data.target.substring(0, 60)}...>`,
+              text: `*Target Url:* <${longExists.data.target}|${truncator(
+                longExists.data.target,
+              )}>`,
             },
           },
           {
@@ -262,9 +263,9 @@ app.view<ViewSubmitAction>(
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `*Target Url:* <${
-                newUrl.data.target
-              }|${newUrl.data.target.substring(0, 60)}...>`,
+              text: `*Target Url:* <${newUrl.data.target}|${truncator(
+                newUrl.data.target,
+              )}>`,
             },
           },
           {
