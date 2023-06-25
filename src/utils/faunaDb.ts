@@ -17,9 +17,7 @@ const getUrlByShort = async (
   try {
     const response: { data: FaunaResult[] } = await client.query(
       query.Map(
-        query.Paginate(
-          query.Match(query.Index("shortCodesBySource"), short.toLowerCase()),
-        ),
+        query.Paginate(query.Match(query.Index("shortCodesBySource"), short)),
         query.Lambda("shortcodes", query.Get(query.Var("shortcodes"))),
       ),
     );
@@ -42,9 +40,7 @@ const getUrlByLong = async (
   try {
     const response: { data: FaunaResult[] } = await client.query(
       query.Map(
-        query.Paginate(
-          query.Match(query.Index("shortCodesByTarget"), long.toLowerCase()),
-        ),
+        query.Paginate(query.Match(query.Index("shortCodesByTarget"), long)),
         query.Lambda("shortcodes", query.Get(query.Var("shortcodes"))),
       ),
     );
@@ -68,8 +64,8 @@ const createUrl = async (
     return await client.query(
       query.Create(query.Collection("shortcodes"), {
         data: {
-          source: short.toLowerCase(),
-          target: long.toLowerCase(),
+          source: short,
+          target: long,
         },
       }),
     );
