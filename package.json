@@ -12,9 +12,7 @@
   "author": "Luke Oliff <luke@lukeoliff.com>",
   "license": "MIT",
   "dependencies": {
-    "@seratch_/bolt-fastify": "^1.0.3",
     "@slack/bolt": "^3.12.2",
-    "fastify": "^3.27.4",
     "faunadb": "^4.8.0",
     "dotenv": "^16.3.1",
     "@flydotio/dockerfile": "^0.2.16",
