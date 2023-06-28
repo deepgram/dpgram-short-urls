@@ -1,7 +1,8 @@
 {
-  "name": "@lukeocodes/fastify-ts-template",
+  "name": "@deepgram/dpgram-short-urls",
   "version": "1.0.0",
-  "description": "Fastify TypeScript Template",
+  "description": "Deepgram's Short URLs Slackbot. Use Slack to shorten your URLs, and mask UTM tags.",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
