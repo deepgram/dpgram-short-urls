@@ -74,8 +74,8 @@ const app = new App({
 app.command<SlashCommand>(
   "/shorten",
   async ({ payload, client, command, body, ack }) => {
-    let modal = modalFactory();
     await ack();
+    let modal = modalFactory();
 
     const result = await client.conversations.members({
       channel,
