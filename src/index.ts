@@ -282,6 +282,4 @@ app.view<ViewSubmitAction>(
 
 (async () => {
   await app.start(process.env.PORT || 3000);
-
-  console.log("⚡️ URL shortener is running!");
 })();
